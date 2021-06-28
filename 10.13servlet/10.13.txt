@@ -1,0 +1,96 @@
+一 session与cookie对比
+session 将数据存储到服务器端，可以存储Object类型的数据，具备生命周期
+ 相对cookie，session更加安全
+cookie 将数据存储到客户端，只能存储String类型的数据，设置有效时间，
+ 相对session，cookie不安全
+ 
+二 jsp--java运行在服务器端的页面
+1 组成
+  html js css等前端内容
+  指令元素
+  脚本元素
+  jsp注释
+2 jsp指令元素
+  <%@指令名 属性名=“值”  属性名=“值” %>
+
+ page指令 --jsp页面的第一行--设置页面属性--内容类型、字符集、导包
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.*,com.chinasofti.bean.*"%>
+3 脚本元素
+小脚本  <% %>  java代码
+表达式	<%= %> 取值后赋值或显示
+声明   <%! %>	方法
+4 jsp页面中html注释 与jsp注释对比
+ 网页运行后 查看源文件时 jsp注释看不到 但是html注释可以看到	
+ 
+三 jsp执行过程	
+翻译阶段  .jsp--.java
+编译阶段  .java--.class
+运行阶段  .class
+
+第一次访问一个jsp文件时 需要经历这三个阶段，不修改代码时 再次访问 可以重用.class文件，
+所以再次访问时速度快。
+
+eclipse--tomcat--备份
+ 工作空间\.metadata\.plugins\org.eclipse.wst.server.core\tmp0
+ 
+jsp与servlet对比
+ jsp与servlet本质上是一个技术，因为jsp执行时首先会翻译成一个Servlet类，再编译执行。
+ jsp和servlet都能做页面显示和业务处理，但是一般搭配使用
+ jsp 一般用于动态页面的显示  servlet 一般用于业务处理 
+ 
+--jsp作用范围
+--jsp 九个内置对象 
+
+四 查询列表 流程
+房屋项目
+  users  fwtype  fwinfo
+ 1 列表显示 （不带关联  一那端）
+    index.jsp点链接--servlet（dao typeList request 跳转）--fwtypeList.jsp(循环)
+ 2 带关联（带外键） 多那端
+   实体类：外键字段映射成一那端的实体类类型
+   dao：连表查询
+       index.jsp点链接--servlet（dao fwList request 跳转）--fwtypeList.jsp(循环)
+
+五 分页查询
+1 dao 
+ 分页方法 参数：当前页码  每页显示的个数
+ 查询记录数方法
+2 分页servlet步骤：
+	//获取当前的页码（1或用户传递）
+	//定义一个size--每页的记录数
+		    //dao 分页方法 list	
+			//dao 总记录数
+
+			//计算总页数
+
+			//list存入request
+			//当前页码存入request
+			//总页数存入request
+
+			//请求转发跳转
+3 jsp页面
+ 上一页  下一页 链接 传递当前页码  
+<a href="SelectAllByPageFwinfo?page=<%=curPage-1%>">上一页</a> 
+  
+ index.jsp点击链接--Servlet（dao）--分页页面显示
+ 分页页面点击 上一页等 --Servlet（dao）
+
+六 根据主键删除的流程
+
+列表页 删除超链接 传递主键---Servlet（获取删除数据的id--dao delete--跳转）
+
+dao delete
+servlet 处理删除的servlet
+列表页 删除链接
+
+七 添加房屋（多）
+
+准备数据的servlet（查类型列表）--表单页面 --Servlet（获取数据  dao insert  跳转）
+
+
+
+
+	
+	
+	

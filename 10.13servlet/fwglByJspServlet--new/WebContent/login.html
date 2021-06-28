@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- 
+   action="" 路径
+   相对路径   action="test/MyServlet"
+   绝对路径  /  页面中/ 代表前面是端口号
+ -->
+
+	<form action="/fwglByJspServlet/CheckLogin" method="post">
+	    用户名： <input type="text" name="userid"/><br/>
+	    密码：<input type="password" name="userpwd"/><br/>
+	    <input type="checkbox" name="auto" value="xuan"/>自动登录（三天有效）<br/>
+	    <input type="submit" value="提交"/>
+	</form>
+
+</body>
+</html>
